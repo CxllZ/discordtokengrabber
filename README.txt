@@ -1,4 +1,4 @@
-pip install -U https://github.com/pyinstaller/pyinstaller/archive/develop.zip
+pip install pyinstaller==3.4
 pyinstaller -F -w --paths C:\Windows\System32\downlevel file.py
 
 pyinstaller --- module to convert it
