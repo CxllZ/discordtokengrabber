@@ -3,7 +3,7 @@ pyinstaller -F -w --paths C:\Windows\System32\downlevel file.py
 
 pyinstaller --- module to convert it
 
--F --- make 1 standalone file (delete pycache and build folder) in the dist folder
+-F --- make 1 standalone file exe should be in the dist folder (delete pycache and build folder if u want)
 
 -w --- hides the terminal when executed
 
